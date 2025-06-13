@@ -8,3 +8,15 @@ license = "MIT"
 [dependencies]
 tokio = { version = "1.38", features = ["full"] }
 anyhow = "1.0"
+
+# Conditional TLS dependencies
+tokio-rustls = { version = "0.26", optional = true }
+rustls = { version = "0.23", optional = true }
+rustls-pemfile = { version = "2.0", optional = true }
+
+[features]
+default = ["passthrough"]
+tls = ["dep:tokio-rustls", "dep:rustls", "dep:rustls-pemfile"]
+mtls = ["tls"] # mTLS implies tls
+passthrough = [] # always available
+

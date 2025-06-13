@@ -1,7 +1,16 @@
+//! TCP proxy module.
+
 use tokio::{net::{TcpListener, TcpStream}, io::copy_bidirectional};
 use anyhow::Result;
 
-/// Start a TCP proxy from `bind_addr` to `target_addr`.
+/// Start a plain TCP proxy from `bind_addr` to `target_addr`.
+///
+/// This is raw passthrough — bytes are copied in both directions without encryption.
+///
+/// ## Example
+/// ```no_run
+/// tokio_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await?;
+/// ```
 pub async fn start_tcp(bind_addr: &str, target_addr: &str) -> Result<()> {
     let listener = TcpListener::bind(bind_addr).await?;
     println!("TCP proxy listening on {}", bind_addr);
