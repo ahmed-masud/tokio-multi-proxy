@@ -1,14 +1,15 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+//! Tokio Proxy: multi-interface asynchronous proxy library using Tokio.
+//!
+//! # Example
+//! ```rust
+//! tokio_proxy::start_tcp("0.0.0.0:8000", "127.0.0.1:9000").await?;
+//! ```
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod tcp;
+pub mod udp;
+pub mod unix;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub use tcp::start_tcp;
+pub use udp::start_udp;
+pub use unix::start_unix;
+
