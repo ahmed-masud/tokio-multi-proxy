@@ -1,0 +1,66 @@
+# File: Makefile.dev
+
+.DEFAULT_GOAL := help
+
+ORG ?= saf.ai
+PACKAGE ?= tokio-proxy
+
+CERT_DIR := examples
+CERT := $(CERT_DIR)/cert.pem
+KEY  := $(CERT_DIR)/key.pem
+CA   := $(CERT_DIR)/ca.pem
+
+# == 🧼 Code Quality ===============================
+
+check: ## Run rustfmt and clippy
+	cargo fmt --check
+	cargo clippy --all-targets --all-features -- -D warnings
+
+fix: ## Auto-fix formatting
+	cargo fmt
+
+# == 📚 Docs ======================================
+
+docs: ## Build documentation (all features)
+	cargo doc --all-features --no-deps --open
+
+docs-release: ## Build and open release docs (like docs.rs)
+	RUSTDOCFLAGS="--cfg docsrs" cargo +stable doc --all-features --no-deps --open
+
+# == 🧪 Testing ===================================
+
+test: ## Run all tests
+	cargo test --all-features
+
+# == 📦 Crate Packaging ===========================
+
+package: ## Dry-run a publish package
+	cargo package
+
+publish: ## Publish to crates.io
+	cargo publish --all-features
+
+# == 🔐 TLS Dev Certs =============================
+
+gen-certs: ## Generate self-signed certs for examples/
+	@mkdir -p $(CERT_DIR)
+	openssl req -x509 -newkey rsa:2048 -nodes \
+		-keyout $(KEY) -out $(CERT) -days 365 \
+		-subj "/C=US/ST=Dev/L=Proxy/O=$(ORG)/CN=localhost"
+
+gen-ca: ## Copy cert.pem to ca.pem for mTLS testing
+	cp $(CERT) $(CA)
+
+tls-fixtures: gen-certs gen-ca ## Generate full TLS/mTLS test chain
+
+# == 🧹 Cleanup ===================================
+
+clean: ## Clean build artifacts
+	cargo clean
+
+# == 🆘 Help ======================================
+
+help: ## Show this help menu
+	@echo "Developer Utility Commands:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile.dev | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
+
