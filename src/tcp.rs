@@ -9,7 +9,9 @@ use anyhow::Result;
 ///
 /// ## Example
 /// ```no_run
-/// tokio_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await?;
+/// async {
+///     tokio_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await.unwrap();
+/// };
 /// ```
 pub async fn start_tcp(bind_addr: &str, target_addr: &str) -> Result<()> {
     let listener = TcpListener::bind(bind_addr).await?;

@@ -17,7 +17,9 @@ use anyhow::Result;
 ///
 /// ## Example
 /// ```no_run
-/// tokio_proxy::start_udp("0.0.0.0:5353", "127.0.0.1:8053").await?;
+/// async {
+///     tokio_proxy::start_udp("0.0.0.0:5353", "127.0.0.1:8053").await.unwrap();
+/// };
 /// ```
 pub async fn start_udp(bind_addr: &str, target_addr: &str) -> Result<()> {
     let socket = UdpSocket::bind(bind_addr).await?;

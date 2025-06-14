@@ -14,7 +14,9 @@ use anyhow::Result;
 ///
 /// ## Example
 /// ```no_run
-/// tokio_proxy::start_unix("/tmp/proxy.sock", "127.0.0.1:9000").await?;
+/// async {
+///     tokio_proxy::start_unix("/tmp/proxy.sock", "127.0.0.1:9000").await.unwrap();
+/// };
 /// ```
 pub async fn start_unix(unix_path: &str, target_addr: &str) -> Result<()> {
     let _ = std::fs::remove_file(unix_path); // Clean up old socket
