@@ -10,7 +10,7 @@ use anyhow::Result;
 /// ## Example
 /// ```no_run
 /// async {
-///     tokio_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await.unwrap();
+///     tokio_multi_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await.unwrap();
 /// };
 /// ```
 pub async fn start_tcp(bind_addr: &str, target_addr: &str) -> Result<()> {

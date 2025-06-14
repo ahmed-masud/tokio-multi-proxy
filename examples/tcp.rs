@@ -1,4 +1,4 @@
-use tokio_proxy::start_tcp;
+use tokio_multi_proxy::start_tcp;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {

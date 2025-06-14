@@ -1,6 +1,6 @@
-//! # tokio-proxy
+//! # tokio-multi-proxy
 //!
-//! `tokio-proxy` is a modular, async multi-interface proxy built with [Tokio](https://tokio.rs) and [Rustls](https://github.com/rustls/rustls).
+//! `tokio-multi-proxy` is a modular, async multi-interface proxy built with [Tokio](https://tokio.rs) and [Rustls](https://github.com/rustls/rustls).
 //!
 //! It supports three modes of operation:
 //!
@@ -21,7 +21,7 @@
 //! ```rust,no_run
 //! #[tokio::main]
 //! async fn main() -> anyhow::Result<()> {
-//!     tokio_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await
+//!     tokio_multi_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await
 //! }
 //! ```
 

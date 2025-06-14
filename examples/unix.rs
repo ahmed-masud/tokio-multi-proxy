@@ -1,4 +1,4 @@
-use tokio_proxy::start_unix;
+use tokio_multi_proxy::start_unix;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {

@@ -1,9 +1,9 @@
-# tokio-proxy
+# tokio-multi-proxy
 
 
-[![Crates.io](https://img.shields.io/crates/v/tokio-proxy.svg)](https://crates.io/crates/tokio-proxy)
-[![Docs.rs](https://docs.rs/tokio-proxy/badge.svg)](https://docs.rs/tokio-proxy)
-[![CI](https://github.com/ahmed-masud/tokio-proxy/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmed-masud/tokio-proxy/actions/workflows/ci.yml)
+[![Crates.io](https://img.shields.io/crates/v/tokio-multi-proxy.svg)](https://crates.io/crates/tokio-multi-proxy)
+[![Docs.rs](https://docs.rs/tokio-multi-proxy/badge.svg)](https://docs.rs/tokio-multi-proxy)
+[![CI](https://github.com/ahmed-masud/tokio-multi-proxy/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmed-masud/tokio-multi-proxy/actions/workflows/ci.yml)
 
 **An async, modular proxy with support for TCP, UDP, Unix sockets, TLS, and mutual TLS. Built on [Tokio](https://tokio.rs) and [Rustls](https://github.com/rustls/rustls).**
 
@@ -25,13 +25,13 @@
 Add to your `Cargo.toml`:
 
 ```toml
-tokio-proxy = { version = "0.1.0", features = ["tls", "mtls"] }
+tokio-multi-proxy = { version = "0.1.0", features = ["tls", "mtls"] }
 ```
 
 Or if using only TCP passthrough (no TLS):
 
 ```toml
-tokio-proxy = "0.1.0"
+tokio-multi-proxy = "0.1.0"
 ```
 
 ---
@@ -55,19 +55,19 @@ cargo run --example mtls --features mtls       # mTLS
 ### TCP
 
 ```rust
-tokio_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await?;
+tokio_multi_proxy::start_tcp("0.0.0.0:8080", "127.0.0.1:9000").await?;
 ```
 
 ### TLS
 
 ```rust
-tokio_proxy::start_tls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem").await?;
+tokio_multi_proxy::start_tls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem").await?;
 ```
 
 ### mTLS
 
 ```rust
-tokio_proxy::start_mtls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem", "ca.pem").await?;
+tokio_multi_proxy::start_mtls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem", "ca.pem").await?;
 ```
 
 ---
@@ -103,7 +103,7 @@ cp examples/cert.pem examples/ca.pem
 
 ## 📚 Documentation
 
-- [API Docs (docs.rs)](https://docs.rs/tokio-proxy)
+- [API Docs (docs.rs)](https://docs.rs/tokio-multi-proxy)
 - Build locally:
   ```bash
   cargo doc --all-features --open

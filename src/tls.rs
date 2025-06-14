@@ -35,7 +35,7 @@ use anyhow::{Context, Result};
 /// ## Example
 /// ```no_run
 /// async {
-///     tokio_proxy::start_tls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem").await.unwrap();
+///     tokio_multi_proxy::start_tls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem").await.unwrap();
 /// };
 /// ```
 #[cfg_attr(docsrs, doc(cfg(feature = "tls")))]
@@ -72,7 +72,7 @@ pub async fn start_tls_tcp(bind_addr: &str, target_addr: &str, cert_path: &str, 
 /// ## Example
 /// ```no_run
 /// async {
-///     tokio_proxy::start_mtls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem", "ca.pem").await.unwrap();
+///     tokio_multi_proxy::start_mtls_tcp("0.0.0.0:443", "127.0.0.1:8080", "cert.pem", "key.pem", "ca.pem").await.unwrap();
 /// };
 /// ```
 #[cfg_attr(docsrs, doc(cfg(feature = "mtls")))]
