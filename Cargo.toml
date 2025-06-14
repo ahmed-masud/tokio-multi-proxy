@@ -1,6 +1,6 @@
 [package]
 name = "tokio-multi-proxy"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Ahmed Masud <ahmed.masud@saf.ai>"]
 edition = "2021"
 description = "A modular async proxy with TLS/mTLS and multiple transport support"
