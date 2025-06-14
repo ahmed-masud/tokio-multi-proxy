@@ -25,6 +25,8 @@
 //! }
 //! ```
 
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
 
 pub mod tcp;
 pub mod udp;
