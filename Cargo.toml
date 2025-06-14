@@ -27,4 +27,7 @@ rustls-pemfile = { version = "2.2", optional = true }
 
 [package.metadata.docs.rs]
 features = ["tls", "mtls"]
-
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs"]
+all-features = true
+toolchain = "nightly"
