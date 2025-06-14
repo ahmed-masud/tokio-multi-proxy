@@ -1,1 +1,4 @@
 /target
+examples/ca.pem
+examples/cert.pem
+examples/key.pem
